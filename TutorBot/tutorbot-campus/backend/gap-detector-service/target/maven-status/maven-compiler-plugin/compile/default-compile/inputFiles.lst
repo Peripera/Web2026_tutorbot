@@ -1,23 +1,23 @@
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/GapDetectorServiceApplication.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/agent/GapDetectorAgent.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/config/DatabaseHealthCheck.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/config/GapDetectorMessagingConfig.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/config/OllamaConfig.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/controller/GapDetectorController.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/dto/GapDetectionRequest.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/dto/GapMapper.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/dto/GapResponse.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/event/EvaluationCompletedEvent.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/event/GapDetectedEvent.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/event/GapDetectorEventListener.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/model/Course.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/model/LearningGap.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/model/Subtopic.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/model/Topic.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/ollama/OllamaDto.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/ollama/OllamaService.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/repository/CourseRepository.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/repository/LearningGapRepository.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/repository/SubtopicRepository.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/repository/TopicRepository.java
-/Users/adolfoarroyo/Documents/Tecmx/sexto semestre/Web/src2026/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/service/GapDetectorService.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/GapDetectorServiceApplication.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/agent/GapDetectorAgent.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/config/DatabaseHealthCheck.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/config/GapDetectorMessagingConfig.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/config/OllamaConfig.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/controller/GapDetectorController.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/dto/GapDetectionRequest.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/dto/GapMapper.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/dto/GapResponse.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/event/EvaluationCompletedEvent.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/event/GapDetectedEvent.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/event/GapDetectorEventListener.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/model/Course.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/model/LearningGap.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/model/Subtopic.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/model/Topic.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/ollama/OllamaDto.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/ollama/OllamaService.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/repository/CourseRepository.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/repository/LearningGapRepository.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/repository/SubtopicRepository.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/repository/TopicRepository.java
+/home/oriana/Documents/vs_Code/lab/Web2026_tutorbot/TutorBot/tutorbot-campus/backend/gap-detector-service/src/main/java/com/tutorbot/gapdetector/service/GapDetectorService.java
