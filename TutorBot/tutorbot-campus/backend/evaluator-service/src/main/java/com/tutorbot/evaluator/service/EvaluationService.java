@@ -25,11 +25,14 @@ public class EvaluationService {
 
     private final EvaluationResultRepository evaluationResultRepository;
     private final OllamaService ollamaService;
+    private final EvaluationGuardService guardService;
+
 
     public EvaluationService(EvaluationResultRepository evaluationResultRepository,
-            OllamaService ollamaService) {
+            OllamaService ollamaService, EvaluationGuardService guardService) {
         this.evaluationResultRepository = evaluationResultRepository;
         this.ollamaService = ollamaService;
+        this.guardService = guardService; // Will be set via setter to avoid circular dependency
     }
 
     public List<EvaluationResponse> findAll() {
@@ -58,6 +61,9 @@ public class EvaluationService {
 
     @Transactional
     public EvaluationResponse evaluate(EvaluationRequest request) {
+        guardService.validate(request.studentId(), request.topicId());
+
+
         log.info("Evaluating answer for student={} session={}", request.studentId(), request.sessionId());
 
         EvaluationResult entity = EvaluationMapper.toEntity(request);
