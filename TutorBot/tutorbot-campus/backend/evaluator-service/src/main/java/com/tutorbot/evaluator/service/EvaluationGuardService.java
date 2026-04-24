@@ -36,9 +36,8 @@ public class EvaluationGuardService {
     }
 
     private void validateTopicIsActive(Long topicId) {
-        Topic topic = topicRepository.findActiveById(topicId).orElse(null);
-        if (topic == null) {
-            throw new TopicInactiveException(topicId);
+        if (topicRepository.findActiveById(topicId).isEmpty()) {
+        throw new TopicInactiveException(topicId);
         }
     }
 
