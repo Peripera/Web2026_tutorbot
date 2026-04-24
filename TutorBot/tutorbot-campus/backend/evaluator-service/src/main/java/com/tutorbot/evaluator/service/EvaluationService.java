@@ -25,6 +25,7 @@ public class EvaluationService {
 
     private final EvaluationResultRepository evaluationResultRepository;
     private final OllamaService ollamaService;
+<<<<<<< HEAD
     private final EvaluationGuardService guardService;
 
 
@@ -33,6 +34,16 @@ public class EvaluationService {
         this.evaluationResultRepository = evaluationResultRepository;
         this.ollamaService = ollamaService;
         this.guardService = guardService; // Will be set via setter to avoid circular dependency
+=======
+    private final EvaluationGuardService guard;
+
+    public EvaluationService(EvaluationResultRepository evaluationResultRepository,
+            OllamaService ollamaService,
+            EvaluationGuardService guard) {
+        this.evaluationResultRepository = evaluationResultRepository;
+        this.ollamaService = ollamaService;
+        this.guard = guard;
+>>>>>>> upstream/main
     }
 
     public List<EvaluationResponse> findAll() {
@@ -61,8 +72,12 @@ public class EvaluationService {
 
     @Transactional
     public EvaluationResponse evaluate(EvaluationRequest request) {
+<<<<<<< HEAD
         guardService.validate(request.studentId(), request.topicId());
 
+=======
+        guard.validate(request.studentId(), request.topicId());
+>>>>>>> upstream/main
 
         log.info("Evaluating answer for student={} session={}", request.studentId(), request.sessionId());
 
@@ -89,7 +104,7 @@ public class EvaluationService {
 
     private void parseOllamaScore(String ollamaResponse, EvaluationResult entity) {
         try {
-            JsonNode json = objectMapper.readTree(ollamaResponse);
+            JsonNode json = objectMapper.readTree(stripMarkdownFences(ollamaResponse));
             int rawScore = json.path("score").asInt(0);
             // Normalize to maxScore scale
             int maxScore = entity.getMaxScore() != null ? entity.getMaxScore() : 100;
@@ -100,5 +115,12 @@ public class EvaluationService {
             entity.setScore(0);
             entity.setFeedbackSummary(ollamaResponse);
         }
+    }
+
+    private String stripMarkdownFences(String text) {
+        if (text == null) {
+            return "";
+        }
+        return text.replaceAll("(?s)```(?:json)?\\s*", "").trim();
     }
 }
