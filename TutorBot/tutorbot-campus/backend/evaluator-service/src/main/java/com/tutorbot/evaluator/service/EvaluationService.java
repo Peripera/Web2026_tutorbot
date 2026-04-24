@@ -25,16 +25,6 @@ public class EvaluationService {
 
     private final EvaluationResultRepository evaluationResultRepository;
     private final OllamaService ollamaService;
-<<<<<<< HEAD
-    private final EvaluationGuardService guardService;
-
-
-    public EvaluationService(EvaluationResultRepository evaluationResultRepository,
-            OllamaService ollamaService, EvaluationGuardService guardService) {
-        this.evaluationResultRepository = evaluationResultRepository;
-        this.ollamaService = ollamaService;
-        this.guardService = guardService; // Will be set via setter to avoid circular dependency
-=======
     private final EvaluationGuardService guard;
 
     public EvaluationService(EvaluationResultRepository evaluationResultRepository,
@@ -43,7 +33,6 @@ public class EvaluationService {
         this.evaluationResultRepository = evaluationResultRepository;
         this.ollamaService = ollamaService;
         this.guard = guard;
->>>>>>> upstream/main
     }
 
     public List<EvaluationResponse> findAll() {
@@ -72,12 +61,7 @@ public class EvaluationService {
 
     @Transactional
     public EvaluationResponse evaluate(EvaluationRequest request) {
-<<<<<<< HEAD
-        guardService.validate(request.studentId(), request.topicId());
-
-=======
         guard.validate(request.studentId(), request.topicId());
->>>>>>> upstream/main
 
         log.info("Evaluating answer for student={} session={}", request.studentId(), request.sessionId());
 

@@ -17,48 +17,25 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(TopicNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleTopicNotFound(TopicNotFoundException ex) {
-<<<<<<< HEAD
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-=======
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
->>>>>>> upstream/main
                 .body(Map.of("error", ex.getMessage()));
     }
 
     @ExceptionHandler(TopicInactiveException.class)
     public ResponseEntity<Map<String, String>> handleTopicInactive(TopicInactiveException ex) {
-<<<<<<< HEAD
-        return ResponseEntity
-                .status(HttpStatus.UNPROCESSABLE_ENTITY)
-=======
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
->>>>>>> upstream/main
                 .body(Map.of("error", ex.getMessage()));
     }
 
     @ExceptionHandler(SkillInactiveException.class)
     public ResponseEntity<Map<String, String>> handleSkillInactive(SkillInactiveException ex) {
-<<<<<<< HEAD
-        return ResponseEntity
-                .status(HttpStatus.UNPROCESSABLE_ENTITY)
-=======
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
->>>>>>> upstream/main
                 .body(Map.of("error", ex.getMessage()));
     }
 
     @ExceptionHandler(StudentNotEnrolledException.class)
     public ResponseEntity<Map<String, String>> handleStudentNotEnrolled(StudentNotEnrolledException ex) {
-<<<<<<< HEAD
-        return ResponseEntity
-                .status(HttpStatus.UNPROCESSABLE_ENTITY)
-                .body(Map.of("error", ex.getMessage()));
-    }
-}
-=======
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(Map.of("error", ex.getMessage()));
     }
 }
->>>>>>> upstream/main
