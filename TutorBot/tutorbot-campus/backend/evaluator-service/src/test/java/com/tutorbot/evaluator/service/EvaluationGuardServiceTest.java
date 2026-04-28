@@ -1,18 +1,17 @@
 package com.tutorbot.evaluator.service;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.when;
 
 import com.tutorbot.evaluator.exception.SkillInactiveException;
 import com.tutorbot.evaluator.exception.StudentNotEnrolledException;
 import com.tutorbot.evaluator.exception.TopicInactiveException;
 import com.tutorbot.evaluator.exception.TopicNotFoundException;
-import com.tutorbot.evaluator.model.Skill;
 import com.tutorbot.evaluator.model.Topic;
 import com.tutorbot.evaluator.repository.LearningPathRepository;
 import com.tutorbot.evaluator.repository.TopicRepository;
@@ -25,8 +24,8 @@ class EvaluationGuardServiceTest {
 
     @BeforeEach
     void setUp() {
-        topicRepository = Mockito.mock(TopicRepository.class);
-        learningPathRepository = Mockito.mock(LearningPathRepository.class);
+        topicRepository = mock(TopicRepository.class);
+        learningPathRepository = mock(LearningPathRepository.class);
         guard = new EvaluationGuardService(topicRepository, learningPathRepository);
     }
 
@@ -35,17 +34,8 @@ class EvaluationGuardServiceTest {
         Long topicId = 1L;
         String studentId = "A00835001";
 
-        Skill skill = new Skill();
-        skill.setId(1L);
-        skill.setActive(true);
-
-        Topic topic = new Topic();
-        topic.setId(topicId);
-        topic.setActive(true);
-        topic.setSkill(skill);
-
         when(topicRepository.existsById(topicId)).thenReturn(true);
-        when(topicRepository.findActiveById(topicId)).thenReturn(Optional.of(topic));
+        when(topicRepository.findActiveById(topicId)).thenReturn(Optional.of(new Topic()));
         when(topicRepository.isSkillActiveByTopicId(topicId)).thenReturn(true);
         when(learningPathRepository.existsByStudentIdAndTopicId(studentId, topicId)).thenReturn(true);
 
@@ -78,12 +68,8 @@ class EvaluationGuardServiceTest {
         Long topicId = 15L;
         String studentId = "A00835005";
 
-        Topic topic = new Topic();
-        topic.setId(topicId);
-        topic.setActive(true);
-
         when(topicRepository.existsById(topicId)).thenReturn(true);
-        when(topicRepository.findActiveById(topicId)).thenReturn(Optional.of(topic));
+        when(topicRepository.findActiveById(topicId)).thenReturn(Optional.of(new Topic()));
         when(topicRepository.isSkillActiveByTopicId(topicId)).thenReturn(false);
 
         assertThrows(SkillInactiveException.class, () -> guard.validate(studentId, topicId));
@@ -94,12 +80,8 @@ class EvaluationGuardServiceTest {
         Long topicId = 1L;
         String studentId = "A00835010";
 
-        Topic topic = new Topic();
-        topic.setId(topicId);
-        topic.setActive(true);
-
         when(topicRepository.existsById(topicId)).thenReturn(true);
-        when(topicRepository.findActiveById(topicId)).thenReturn(Optional.of(topic));
+        when(topicRepository.findActiveById(topicId)).thenReturn(Optional.of(new Topic()));
         when(topicRepository.isSkillActiveByTopicId(topicId)).thenReturn(true);
         when(learningPathRepository.existsByStudentIdAndTopicId(studentId, topicId)).thenReturn(false);
 

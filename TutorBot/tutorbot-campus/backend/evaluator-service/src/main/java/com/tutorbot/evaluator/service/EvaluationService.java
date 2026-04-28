@@ -43,7 +43,11 @@ public class EvaluationService {
 
     public EvaluationResponse findById(Long id) {
     if (id == null) {
-        throw new IllegalArgumentException("Id cannot be null");
+        return evaluationResultRepository.findById(id)
+        .map(EvaluationMapper::toResponse)
+        .orElseThrow(() -> new IllegalArgumentException("Evaluation not found: " + id));
+        
+        
     }
 
     return evaluationResultRepository.findById(id)
@@ -85,13 +89,15 @@ public class EvaluationService {
     }
 
     @Transactional
-public EvaluationResponse save(EvaluationResult evaluationResult) {
-    EvaluationResult safeEvaluationResult =
-            java.util.Objects.requireNonNull(evaluationResult, "EvaluationResult cannot be null");
+    public EvaluationResponse save(EvaluationResult evaluationResult) {
+        EvaluationResult safeEvaluationResult =
+        java.util.Objects.requireNonNull(evaluationResult, "EvaluationResult cannot be null");
 
-    EvaluationResult saved = evaluationResultRepository.save(safeEvaluationResult);
-    return EvaluationMapper.toResponse(saved);
+        EvaluationResult saved = evaluationResultRepository.save(safeEvaluationResult);
+        return EvaluationMapper.toResponse(saved);
 }
+
+    
 
     private void parseOllamaScore(String ollamaResponse, EvaluationResult entity) {
         try {

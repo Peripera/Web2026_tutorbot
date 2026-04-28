@@ -9,7 +9,6 @@ import com.tutorbot.evaluator.exception.TopicNotFoundException;
 import com.tutorbot.evaluator.repository.LearningPathRepository;
 import com.tutorbot.evaluator.repository.TopicRepository;
 
-
 @Service
 public class EvaluationGuardService {
 
@@ -17,7 +16,7 @@ public class EvaluationGuardService {
     private final LearningPathRepository learningPathRepository;
 
     public EvaluationGuardService(TopicRepository topicRepository,
-            LearningPathRepository learningPathRepository) {
+                                 LearningPathRepository learningPathRepository) {
         this.topicRepository = topicRepository;
         this.learningPathRepository = learningPathRepository;
     }
@@ -30,20 +29,21 @@ public class EvaluationGuardService {
     }
 
     private void validateTopicExists(Long topicId) {
-        if (topicId == null || !topicRepository.existsById(topicId)) {
+        if (!topicRepository.existsById(topicId)) {
             throw new TopicNotFoundException(topicId);
         }
     }
 
     private void validateTopicIsActive(Long topicId) {
-        if (topicRepository.findActiveById(topicId).isEmpty()) {
-        throw new TopicInactiveException(topicId);
+        boolean isActive = topicRepository.findActiveById(topicId).isPresent();
+        if (!isActive) {
+            throw new TopicInactiveException(topicId);
         }
     }
 
     private void validateSkillIsActive(Long topicId) {
-        Boolean skillActive = topicRepository.isSkillActiveByTopicId(topicId);
-        if (skillActive == null || !skillActive) {
+        boolean isSkillActive = topicRepository.isSkillActiveByTopicId(topicId);
+        if (!isSkillActive) {
             throw new SkillInactiveException(topicId);
         }
     }
