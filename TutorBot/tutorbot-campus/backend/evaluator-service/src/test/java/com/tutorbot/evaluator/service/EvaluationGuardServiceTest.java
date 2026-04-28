@@ -54,7 +54,7 @@ class EvaluationGuardServiceTest {
 
     @Test
     void topicDoesNotExist_throwsTopicNotFoundException() {
-        Long topicId = 999L;
+        Long topicId = 9999L;
         String studentId = "A00835001";
 
         when(topicRepository.existsById(topicId)).thenReturn(false);

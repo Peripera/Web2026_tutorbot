@@ -6,9 +6,9 @@ import com.tutorbot.evaluator.exception.SkillInactiveException;
 import com.tutorbot.evaluator.exception.StudentNotEnrolledException;
 import com.tutorbot.evaluator.exception.TopicInactiveException;
 import com.tutorbot.evaluator.exception.TopicNotFoundException;
-import com.tutorbot.evaluator.model.Topic;
 import com.tutorbot.evaluator.repository.LearningPathRepository;
 import com.tutorbot.evaluator.repository.TopicRepository;
+
 
 @Service
 public class EvaluationGuardService {
@@ -30,7 +30,7 @@ public class EvaluationGuardService {
     }
 
     private void validateTopicExists(Long topicId) {
-        if (!topicRepository.existsById(topicId)) {
+        if (topicId == null || !topicRepository.existsById(topicId)) {
             throw new TopicNotFoundException(topicId);
         }
     }

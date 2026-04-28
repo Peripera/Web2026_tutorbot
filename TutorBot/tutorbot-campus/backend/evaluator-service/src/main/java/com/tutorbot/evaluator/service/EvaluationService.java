@@ -42,10 +42,14 @@ public class EvaluationService {
     }
 
     public EvaluationResponse findById(Long id) {
-        return evaluationResultRepository.findById(id)
-                .map(EvaluationMapper::toResponse)
-                .orElseThrow(() -> new IllegalArgumentException("Evaluation not found: " + id));
+    if (id == null) {
+        throw new IllegalArgumentException("Id cannot be null");
     }
+
+    return evaluationResultRepository.findById(id)
+            .map(EvaluationMapper::toResponse)
+            .orElseThrow(() -> new IllegalArgumentException("Evaluation not found: " + id));
+}
 
     public List<EvaluationResponse> findByStudentId(String studentId) {
         return evaluationResultRepository.findByStudentId(studentId).stream()
@@ -81,10 +85,13 @@ public class EvaluationService {
     }
 
     @Transactional
-    public EvaluationResponse save(EvaluationResult evaluationResult) {
-        EvaluationResult saved = evaluationResultRepository.save(evaluationResult);
-        return EvaluationMapper.toResponse(saved);
-    }
+public EvaluationResponse save(EvaluationResult evaluationResult) {
+    EvaluationResult safeEvaluationResult =
+            java.util.Objects.requireNonNull(evaluationResult, "EvaluationResult cannot be null");
+
+    EvaluationResult saved = evaluationResultRepository.save(safeEvaluationResult);
+    return EvaluationMapper.toResponse(saved);
+}
 
     private void parseOllamaScore(String ollamaResponse, EvaluationResult entity) {
         try {
@@ -106,5 +113,6 @@ public class EvaluationService {
             return "";
         }
         return text.replaceAll("(?s)```(?:json)?\\s*", "").trim();
+        
     }
 }
