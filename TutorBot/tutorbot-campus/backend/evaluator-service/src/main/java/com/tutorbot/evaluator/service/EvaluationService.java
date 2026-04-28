@@ -25,11 +25,14 @@ public class EvaluationService {
 
     private final EvaluationResultRepository evaluationResultRepository;
     private final OllamaService ollamaService;
+    private final EvaluationGuardService guard;
 
     public EvaluationService(EvaluationResultRepository evaluationResultRepository,
-            OllamaService ollamaService) {
+            OllamaService ollamaService,
+            EvaluationGuardService guard) {
         this.evaluationResultRepository = evaluationResultRepository;
         this.ollamaService = ollamaService;
+        this.guard = guard;
     }
 
     public List<EvaluationResponse> findAll() {
@@ -39,10 +42,18 @@ public class EvaluationService {
     }
 
     public EvaluationResponse findById(Long id) {
+    if (id == null) {
         return evaluationResultRepository.findById(id)
-                .map(EvaluationMapper::toResponse)
-                .orElseThrow(() -> new IllegalArgumentException("Evaluation not found: " + id));
+        .map(EvaluationMapper::toResponse)
+        .orElseThrow(() -> new IllegalArgumentException("Evaluation not found: " + id));
+        
+        
     }
+
+    return evaluationResultRepository.findById(id)
+            .map(EvaluationMapper::toResponse)
+            .orElseThrow(() -> new IllegalArgumentException("Evaluation not found: " + id));
+}
 
     public List<EvaluationResponse> findByStudentId(String studentId) {
         return evaluationResultRepository.findByStudentId(studentId).stream()
@@ -58,6 +69,8 @@ public class EvaluationService {
 
     @Transactional
     public EvaluationResponse evaluate(EvaluationRequest request) {
+        guard.validate(request.studentId(), request.topicId());
+
         log.info("Evaluating answer for student={} session={}", request.studentId(), request.sessionId());
 
         EvaluationResult entity = EvaluationMapper.toEntity(request);
@@ -77,13 +90,18 @@ public class EvaluationService {
 
     @Transactional
     public EvaluationResponse save(EvaluationResult evaluationResult) {
-        EvaluationResult saved = evaluationResultRepository.save(evaluationResult);
+        EvaluationResult safeEvaluationResult =
+        java.util.Objects.requireNonNull(evaluationResult, "EvaluationResult cannot be null");
+
+        EvaluationResult saved = evaluationResultRepository.save(safeEvaluationResult);
         return EvaluationMapper.toResponse(saved);
-    }
+}
+
+    
 
     private void parseOllamaScore(String ollamaResponse, EvaluationResult entity) {
         try {
-            JsonNode json = objectMapper.readTree(ollamaResponse);
+            JsonNode json = objectMapper.readTree(stripMarkdownFences(ollamaResponse));
             int rawScore = json.path("score").asInt(0);
             // Normalize to maxScore scale
             int maxScore = entity.getMaxScore() != null ? entity.getMaxScore() : 100;
@@ -94,5 +112,13 @@ public class EvaluationService {
             entity.setScore(0);
             entity.setFeedbackSummary(ollamaResponse);
         }
+    }
+
+    private String stripMarkdownFences(String text) {
+        if (text == null) {
+            return "";
+        }
+        return text.replaceAll("(?s)```(?:json)?\\s*", "").trim();
+        
     }
 }
